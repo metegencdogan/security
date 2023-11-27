@@ -1,6 +1,6 @@
 package com.mete.security.controller
 
-import com.mete.security.RegistrationRequest
+import com.mete.security.dto.RegistrationRequest
 import com.mete.security.service.CustomUserDetailsService
 import com.mete.security.service.TokenService
 import jakarta.annotation.security.RolesAllowed
@@ -16,7 +16,7 @@ class SecurityController(
     private val customUserDetailsService: CustomUserDetailsService
 ) {
 
-    @PostMapping("/token", produces = ["application/json"])
+    @PostMapping("/login", produces = ["application/json"])
     fun getHello(authentication: Authentication): ResponseEntity<String> {
         val token = tokenService.generateToken(authentication)
         return ResponseEntity.ok(token)
@@ -26,11 +26,6 @@ class SecurityController(
     fun registerUser(@RequestBody registrationRequest: RegistrationRequest): ResponseEntity<String> {
         customUserDetailsService.registerUser(registrationRequest)
         return ResponseEntity.ok("User registered successfully")
-    }
-
-    @GetMapping("/secured")
-    fun getHelloSecured(): ResponseEntity<String> {
-        return ResponseEntity.ok("Hello")
     }
 
     @GetMapping("/admin")

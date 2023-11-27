@@ -48,7 +48,7 @@ class SecurityConfiguration(
             .authorizeHttpRequests {
                 it
                     .requestMatchers("/security/register").permitAll()
-                    .requestMatchers("/security/token").permitAll()
+                    .requestMatchers("/security/login").permitAll()
                     .anyRequest().authenticated()
             }
             .oauth2ResourceServer { it.jwt { } }

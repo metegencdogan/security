@@ -1,6 +1,6 @@
 package com.mete.security.service
 
-import com.mete.security.RegistrationRequest
+import com.mete.security.dto.RegistrationRequest
 import com.mete.security.dto.Role
 import com.mete.security.entity.User
 import com.mete.security.repository.UserRepository
