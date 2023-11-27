@@ -1,0 +1,22 @@
+version: '3'
+services:
+  security-db:
+    image: postgres:latest
+    build: .
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: security
+    volumes:
+      - paycode-db:/var/lib/postgresql/data
+    networks:
+      - application
+
+volumes:
+  paycode-db:
+
+networks:
+  application:
+    driver: bridge
