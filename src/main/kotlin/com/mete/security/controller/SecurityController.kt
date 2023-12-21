@@ -18,16 +18,16 @@ class SecurityController(
     private val customUserDetailsService: CustomUserDetailsService
 ) {
 
-    @PostMapping("/login", produces = ["application/json"])
-    fun getHello(authentication: Authentication): ResponseEntity<String> {
-        val token = tokenService.generateToken(authentication)
-        return ResponseEntity.ok(token)
-    }
-
     @PostMapping("/register")
     fun registerUser(@RequestBody registrationRequest: RegistrationRequest): ResponseEntity<String> {
         customUserDetailsService.registerUser(registrationRequest)
         return ResponseEntity.ok("User registered successfully")
+    }
+
+    @PostMapping("/login")
+    fun getHello(authentication: Authentication): ResponseEntity<String> {
+        val token = tokenService.generateToken(authentication)
+        return ResponseEntity.ok(token)
     }
 
     @GetMapping("/admin")

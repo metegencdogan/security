@@ -1,11 +1,7 @@
 package com.mete.security.entity
 
 import com.mete.security.dto.Role
-import jakarta.persistence.Column
-import jakarta.persistence.ElementCollection
-import jakarta.persistence.Entity
-import jakarta.persistence.Id
-import jakarta.persistence.Table
+import jakarta.persistence.*
 import java.util.*
 
 @Entity
@@ -18,6 +14,6 @@ data class User(
     val password: String,
     val email: String,
     val phoneNumber: String,
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     val roles: MutableSet<Role> = mutableSetOf()
 )
