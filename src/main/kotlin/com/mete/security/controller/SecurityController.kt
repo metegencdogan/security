@@ -1,6 +1,8 @@
 package com.mete.security.controller
 
 import com.mete.security.dto.RegistrationRequest
+import com.mete.security.dto.Role
+import com.mete.security.entity.User
 import com.mete.security.service.CustomUserDetailsService
 import com.mete.security.service.TokenService
 import jakarta.annotation.security.RolesAllowed
@@ -32,5 +34,11 @@ class SecurityController(
     @RolesAllowed(value = ["ADMIN"])
     fun getHelloAdmin(): ResponseEntity<String> {
         return ResponseEntity.ok("Hello")
+    }
+
+    @PostMapping("/user/{username}/assign-roles")
+    @RolesAllowed(value = ["ADMIN"])
+    fun assignRolesToUser(@PathVariable username: String, @RequestBody roles: List<Role>): User? {
+        return customUserDetailsService.assignRolesToUser(username, roles)
     }
 }

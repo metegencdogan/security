@@ -47,6 +47,7 @@ class SecurityConfiguration(
             .csrf { it.disable() }
             .authorizeHttpRequests {
                 it
+                    .requestMatchers("/actuator/**").permitAll()
                     .requestMatchers("/security/register").permitAll()
                     .requestMatchers("/security/login").permitAll()
                     .anyRequest().authenticated()

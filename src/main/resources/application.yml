@@ -1,6 +1,6 @@
 logging:
   level:
-    org.springframework.security: TRACE
+    org.springframework.security: INFO
 
 rsa:
   private-key: classpath:certs/private.pem
@@ -18,3 +18,9 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
